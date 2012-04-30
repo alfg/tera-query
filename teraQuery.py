@@ -2,7 +2,7 @@
 
 '''
 
-#### TeraScrape.py ####
+#### teraQuery.py ####
 A simple script to query Tera data by webscraping teracodex.com (and soon others).
 Why? Because I was bored one day.
 
@@ -10,7 +10,7 @@ Installation (Ubuntu/Debian):
 
 # apt-get install python-setuptools
 # easy_install BeautifulSoup prettytable
-# python teraScrape.py
+# python teraQuery.py
 
 '''
 import re
