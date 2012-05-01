@@ -8,7 +8,7 @@ A screen-scraping python script to query TERA item databases from the command li
     $ easy_install BeautifulSoup prettytable
     $ python teraQuery.py
     
-![teraQuery.py](http://i.imgur.com/FVMe6l.png)
+![teraQuery.py](http://i.imgur.com/xwCsNl.png)
 
 ### Notes
 
