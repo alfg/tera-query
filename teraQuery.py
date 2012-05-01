@@ -19,6 +19,27 @@ import sys
 from prettytable import PrettyTable
 from BeautifulSoup import BeautifulSoup
 
+class bcolors:
+    ''' Terminal Colors! '''
+
+    HEADER = '\033[94m'
+    BLUE = '\033[96m'
+    GREEN = '\033[92m'
+    PURPLE = '\033[93m'
+    YELLOW = '\033[33m'
+    RED = '\033[91m'
+    WHITE = '\033[37m'
+    ENDC = '\033[0m'
+
+    def disable(self):
+        self.HEADER = ''
+        self.BLUE = ''
+        self.GREEN = ''
+        self.PURPLE = ''
+        self.RED = ''
+        self.ENDC = ''
+
+
 def queryTera():
     #Ask user for query
     query = raw_input("Enter a search term or item ID: ")
@@ -31,29 +52,29 @@ def queryTera():
         html = BeautifulSoup(urllib2.urlopen('http://teracodex.com/item.php?id=%s' % query).read())
 
         #Render output nicely
-        print '\n============================'
-        print html.find('div', {'class' : re.compile(r".*\bname\b.*")}).text
-        print '============================'
+        print '\n======================================='
+        print '     ' + bcolors.HEADER + html.find('div', {'class' : re.compile(r".*\bname\b.*")}).text + bcolors.ENDC
+        print '======================================='
 
         #If 'text' dom class exists, then print stats
         try:
-            ptag = html.find('div', {'class' : 'text'}).findAll('p')
+            ptag = html.find('div', {'class' : 'details'}).findAll('p')
 
             for i in ptag:
-                print i.text
+                print bcolors.WHITE + ' ' + i.text + bcolors.ENDC
 
-            print '---------------------'
+            print '---------------------------------------'
         except:
             pass
 
         #If 'stats clearfix' class exists
         try:
-            ptag = html.find('div', {'class' : 'stats clearfix'}).findAll('div')
+            ptag = html.find('table', {'class' : 'stat'}).findAll('td')
 
             for i in ptag:
-                print '==', i.text
+                print bcolors.GREEN + '-', i.text + bcolors.ENDC
 
-            print '---------------------'
+            print '---------------------------------------'
         except:
             pass
 
@@ -62,9 +83,9 @@ def queryTera():
             ptag = html.find('div', {'class' : 'bonus'}).findAll('p')
 
             for i in ptag:
-                print '-', i.text
+                print bcolors.YELLOW + '-', i.text + bcolors.ENDC
 
-            print '---------------------'
+            print '---------------------------------------'
         except:
             pass
 
@@ -73,9 +94,9 @@ def queryTera():
             ptag = html.find('div', {'class' : 'crystal'}).findAll('p')
 
             for i in ptag:
-                print '[', i.text.replace('&nbsp;', ''), ']'
+                print bcolors.BLUE + '[', i.text.replace('&nbsp;', ''), ']' + bcolors.ENDC
 
-            print '---------------------\n'
+            print '---------------------------------------\n'
         except:
             pass
 
@@ -92,7 +113,7 @@ def queryTera():
 
         #Gather data and enter into pretty rows
         for row in html('table', {'class' : 'itemList itemsearch'})[0].tbody('tr'):
-            x.add_row([row.findAll('a')[0]['href'][13:],
+            x.add_row([row.findAll('a')[0]['rel'],
                         row.findAll('a')[0].text,
                         row.findAll('td')[1].text,
                         row.findAll('td')[2].text,
@@ -115,3 +136,4 @@ if __name__ == "__main__":
             sys.exit()
         except IndexError:
             print "No results found. Try another query or press Ctrl+C to quit."
+
