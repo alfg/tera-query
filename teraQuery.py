@@ -16,6 +16,7 @@ Installation (Ubuntu/Debian):
 import re
 import urllib2
 import sys
+import readline
 from prettytable import PrettyTable
 from BeautifulSoup import BeautifulSoup
 
