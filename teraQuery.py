@@ -9,7 +9,7 @@ Why? Because I was bored one day.
 Installation (Ubuntu/Debian):
 
 # apt-get install python-setuptools
-# easy_install BeautifulSoup prettytable
+# pip install prettytable==0.5 BeautifulSoup
 # python teraQuery.py
 
 '''
