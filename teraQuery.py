@@ -59,7 +59,7 @@ def queryTera():
 
         #If 'text' dom class exists, then print stats
         try:
-            ptag = html.find('div', {'class' : 'details'}).findAll('p')
+            ptag = html.find('div', {'class' : 'codex-tooltip-details'}).findAll('p')
 
             for i in ptag:
                 print bcolors.WHITE + ' ' + i.text + bcolors.ENDC
@@ -70,7 +70,7 @@ def queryTera():
 
         #If 'stats clearfix' class exists
         try:
-            ptag = html.find('table', {'class' : 'stat'}).findAll('td')
+            ptag = html.find('table', {'class' : 'codex-tooltip-stats'}).findAll('td')
 
             for i in ptag:
                 print bcolors.GREEN + '-', i.text + bcolors.ENDC
@@ -81,7 +81,7 @@ def queryTera():
 
         #If 'bonus' class exists
         try:
-            ptag = html.find('div', {'class' : 'bonus'}).findAll('p')
+            ptag = html.find('div', {'class' : 'codex-tooltip-bonus-normal'}).findAll('p')
 
             for i in ptag:
                 print bcolors.YELLOW + '-', i.text + bcolors.ENDC
@@ -92,7 +92,7 @@ def queryTera():
 
         #If 'crystal' class exists
         try:
-            ptag = html.find('div', {'class' : 'crystal'}).findAll('p')
+            ptag = html.find('div', {'class' : 'codex-tooltip-crystal'}).findAll('p')
 
             for i in ptag:
                 print bcolors.BLUE + '[', i.text.replace('&nbsp;', ''), ']' + bcolors.ENDC
